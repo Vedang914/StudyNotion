@@ -81,3 +81,31 @@ exports.createCourse = async (req, res) => {
     })
   }
 };
+
+exports.getAllCourses = async(req,res)=>{
+  try{
+
+    const allCourses = await Course.find({},{
+      courseName:true,
+      price:true,
+      thumbnail:true,
+      instructor:true,
+      ratingAndReviews:true,
+      studentsEnrolled:true,
+      
+
+
+    });
+
+  }catch(error){
+    console.log(error);
+    return res.status(500).json({
+      success:false,
+      message:"Cannot Fetch Course Data",
+      error:error.message
+
+    })
+  }
+}
+
+
